@@ -5,7 +5,6 @@
 */
 
 var gulp 		 = require('gulp'),
-	postcss		 = require('gulp-postcss'),
 	browserSync  = require('browser-sync'),
 	reload 		 = browserSync.reload,
 	autoprefixer = require('gulp-autoprefixer'),
@@ -21,11 +20,11 @@ var gulp 		 = require('gulp'),
 gulp.task('jade2html',function(){
 
 	gulp.src('Jade/*.jade')
-	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-	.pipe(jade())
-	.pipe(reload({ stream:true }))
-	.pipe(gulp.dest('dist/'))
-	.pipe(notify( {title:'Jade',message:'Compliación exitosa'} ));;
+		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+		.pipe(jade())
+		.pipe(reload({ stream:true }))
+		.pipe(gulp.dest('dist/'))
+		.pipe(notify( {title:'Jade',message:'Compliación exitosa'} ));;
 
 });
 
@@ -54,11 +53,15 @@ gulp.task('autoprefixer', function(){
 });
 
 
+
+// Tarea para crear un servidor y actualizar automaticamnete cuando hallan cambios en los arhivos
+
 gulp.task('serve', ['stylus2css','jade2html'], function() {
   browserSync({
     server: {
       baseDir: 'dist'
-    }
+    },
+    notify: false
   });
 
   gulp.watch('Stylus/*.styl', ['stylus2css']);
