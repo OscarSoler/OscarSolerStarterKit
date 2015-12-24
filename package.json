@@ -1,0 +1,30 @@
+{
+  "name": "OscarSolerStarterKit",
+  "version": "0.0.0",
+  "description": "Estructura para la creacion de nuevos proyectos",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OscarSoler/OscarSolerStarterKit.git"
+  },
+  "keywords": [
+    "OscarSolerStarterKit"
+  ],
+  "author": "Oscar Soler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OscarSoler/OscarSolerStarterKit/issues"
+  },
+  "homepage": "https://github.com/OscarSoler/OscarSolerStarterKit",
+  "devDependencies": {
+    "browser-sync": "^2.10.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-postcss": "^6.0.1",
+    "gulp-stylus": "^2.1.2"
+  }
+}
