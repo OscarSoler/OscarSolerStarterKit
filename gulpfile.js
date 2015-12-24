@@ -9,7 +9,9 @@ var gulp 		 = require('gulp'),
 	browserSync  = require('browser-sync'),
 	reload 		 = browserSync.reload,
 	autoprefixer = require('gulp-autoprefixer'),
+	plumber 	 = require('gulp-plumber'),
 	jade 		 = require('gulp-jade'),
+	notify		 = require('gulp-notify'),
 	stylus 		 = require('gulp-stylus');  
 
 
@@ -19,9 +21,11 @@ var gulp 		 = require('gulp'),
 gulp.task('jade2html',function(){
 
 	gulp.src('Jade/*.jade')
+	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
 	.pipe(jade())
+	.pipe(reload({ stream:true }))
 	.pipe(gulp.dest('dist/'))
-	.pipe(reload({ stream:true }));;
+	.pipe(notify( {title:'Jade',message:'Compliación exitosa'} ));;
 
 });
 
@@ -30,9 +34,11 @@ gulp.task('jade2html',function(){
 gulp.task('stylus2css', function(){	
 
 	gulp.src('Stylus/main.styl')
-		.pipe(stylus( {compress:true} ))
+		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+		.pipe(stylus( {compress:true}))
+		.pipe(reload({ stream:true }))
 		.pipe(gulp.dest('dist/css/'))
-		.pipe(reload({ stream:true }));
+		.pipe(notify( {title:'Stylus',message:'Compliación exitosa'} ));
 });
 
 
@@ -62,6 +68,9 @@ gulp.task('serve', ['stylus2css','jade2html'], function() {
   gulp.watch('Modulos/*/*.jade', ['jade2html']);
 
 });
+
+
+gulp.task('default', ['serve']);
 
 
 
