@@ -70,6 +70,8 @@ gulp.task('serve', ['stylus2css','jade2html'], function() {
   gulp.watch('Jade/*.jade', ['jade2html']);
   gulp.watch('Modulos/*/*.jade', ['jade2html']);
 
+  gulp.watch('dist/css/main.css',['autoprefixer']);
+  
 });
 
 
